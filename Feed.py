@@ -10,42 +10,24 @@ import yaml
 import os
 import re
 
-
-class Feed(object):
-    def __init__(self, link: str, keywords: list) -> None:
-        #super().__init__(link, keywords)
-        self.rss_link = link
-        self.keywords = keywords
-        self.content = feedparser.parse(self.rss_link)
-
-    def __len__(self):
-        return len(self.content)
-
-    def print_entry(self, idx: int):
-        for key in self.content[idx].keys():
-            print('{} : {}'.format(key, self.content[idx][key]))
-
-
 def make_bold(keywords, text):
     for kw in keywords:
         if kw in text:
             text = text.replace(kw, '**'+kw+'**')
     return text
-
-
-class ArxivFeed(Feed):
-    def __init__(self, link: str, keywords: list, authors: list) -> None:
-        self.rss_link = link
-        self.tag = link.split("/")[-2]
+class ArxivFeed(object):
+    def __init__(self, feed: object, category:str,keywords: list, authors: list) -> None:
+        self.tag = category
         self.keywords = keywords
         self.authors = authors
-        self.content = feedparser.parse(self.rss_link)
+        #self.feed = feedparser.parse(self.rss_link)
+        self.feed = feed
         # 今日所有的title
         self.titles = []
         # 查找感兴趣的论文
         self.selected = []
         nameRegex = re.compile('[A-Za-z]{2,25} [A-Za-z]{2,25}')
-        for entry in self.content.entries:
+        for entry in self.feed.entries:
             # print(entry['id'])
             entry["summary"] = entry["summary"].replace("\n", " ")
             in_summary = any([kw in entry["summary"] for kw in self.keywords]
