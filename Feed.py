@@ -9,8 +9,10 @@ import feedparser
 import yaml
 import os
 import re
+
+
 class Feed(object):
-    def __init__(self,link:str,keywords:list) -> None:
+    def __init__(self, link: str, keywords: list) -> None:
         #super().__init__(link, keywords)
         self.rss_link = link
         self.keywords = keywords
@@ -19,30 +21,20 @@ class Feed(object):
     def __len__(self):
         return len(self.content)
 
-    def print_entry(self, idx:int):
+    def print_entry(self, idx: int):
         for key in self.content[idx].keys():
             print('{} : {}'.format(key, self.content[idx][key]))
 
-    def save_as_yaml(self, file_path=None):
-        if file_path is not None:
-            file = file_path + ".yaml"
-        else:
-            file = os.path.join("./tmp_feed.yaml")
-        # feed = vars(feed)
-        os.makedirs(os.path.dirname(file), exist_ok=True)
-        with open(file, "w") as f:
-            return yaml.dump(self.content, f)
 
-def make_bold(keywords,text):
+def make_bold(keywords, text):
     for kw in keywords:
         if kw in text:
-            #print(kw)
-            text = text.replace(kw,'**'+kw+'**')
+            text = text.replace(kw, '**'+kw+'**')
     return text
+
 
 class ArxivFeed(Feed):
     def __init__(self, link: str, keywords: list, authors: list) -> None:
-        #super(ArxivFeed, self).__init__(link, keywords, authors)
         self.rss_link = link
         self.tag = link.split("/")[-2]
         self.keywords = keywords
@@ -54,45 +46,50 @@ class ArxivFeed(Feed):
         self.selected = []
         nameRegex = re.compile('[A-Za-z]{2,25} [A-Za-z]{2,25}')
         for entry in self.content.entries:
-            #print(entry['id'])
+            # print(entry['id'])
             entry["summary"] = entry["summary"].replace("\n", " ")
-            in_summary = any([kw in entry["summary"] for kw in self.keywords]) if self.keywords is not None else False
-            in_title = any([kw in entry["title"] for kw in self.keywords]) if self.keywords is not None else False
-            in_author = any([au in entry["author"] for au in self.authors]) if self.authors is not None else False
+            in_summary = any([kw in entry["summary"] for kw in self.keywords]
+                             ) if self.keywords is not None else False
+            in_title = any([kw in entry["title"] for kw in self.keywords]
+                           ) if self.keywords is not None else False
+            in_author = any([au in entry["author"] for au in self.authors]
+                            ) if self.authors is not None else False
             if in_author or in_summary or in_title:
                 author_lst = nameRegex.findall(entry["author"])
                 sel_entry = {"title": entry["title"],
-                            "link": entry["link"],
-                            "author": ", ".join(author_lst),
-                            "abstract": entry["summary"].replace("<p>", " ").replace("</p>", " ")
-                }
+                             "link": entry["link"],
+                             "author": ", ".join(author_lst),
+                             "abstract": entry["summary"].replace("<p>", " ").replace("</p>", " ")
+                             }
                 # 关键词加粗
                 if in_author:
-                    sel_entry['author'] = make_bold(self.authors,sel_entry['author'])
+                    sel_entry['author'] = make_bold(
+                        self.authors, sel_entry['author'])
                 elif in_summary:
-                    sel_entry['abstract'] = make_bold(self.keywords,sel_entry['abstract'])
+                    sel_entry['abstract'] = make_bold(
+                        self.keywords, sel_entry['abstract'])
                 elif in_title:
-                    sel_entry['title'] = make_bold(self.keywords,sel_entry['title'])
+                    sel_entry['title'] = make_bold(
+                        self.keywords, sel_entry['title'])
                 self.selected.append(sel_entry)
             self.titles.append(entry["title"])
-    
+
     def convert2text_selected(self):
-        #print("## Your Interest")
-        #s = '## {}'.format(self.tag)
         s = '---\n'
         for entry in self.selected:
-            s += '{} {}\n'.format("###",entry["title"])
-            s +='{} : {}\n'.format("- Authors",entry["author"])
-            s += '{} : [{}]({})\n'.format("- Link",entry["link"],entry["link"])
-            s+='{} : {}\n'.format("> ABSTRACT ",entry["abstract"])
+            s += '{} {}\n'.format("###", entry["title"])
+            s += '{} : {}\n'.format("- Authors", entry["author"])
+            s += '{} : [{}]({})\n'.format("- Link",
+                                          entry["link"], entry["link"])
+            s += '{} : {}\n'.format("> ABSTRACT ", entry["abstract"])
         return s
-    
+
     def convert2text_paperlist(self):
-        #print("## Paper list")
-        s ='---\n'
-        s+="**{}** new papers in {}:-) \n".format(len(self.titles), self.tag)
-        for i,p in enumerate(self.titles):
-            s+="{}. {}\n".format(i+1, p) 
+        # print("## Paper list")
+        s = '---\n'
+        s += "**{}** new papers in {}:-) \n".format(len(self.titles), self.tag)
+        for i, p in enumerate(self.titles):
+            s += "{}. {}\n".format(i+1, p)
         return s
 
     def print_selected(self):
@@ -103,14 +100,8 @@ class ArxivFeed(Feed):
         print("## Paper list")
         print(self.convert2text_paperlist())
 
-
     def summary():
         pass
 
     def send_me_via_email():
         pass
-
-
-
-
-
