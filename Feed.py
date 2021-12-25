@@ -10,13 +10,16 @@ import yaml
 import os
 import re
 
+
 def make_bold(keywords, text):
     for kw in keywords:
         if kw in text:
             text = text.replace(kw, '**'+kw+'**')
     return text
+
+
 class ArxivFeed(object):
-    def __init__(self, feed: object, category:str,keywords: list, authors: list) -> None:
+    def __init__(self, feed: object, category: str, keywords: list, authors: list) -> None:
         self.tag = category
         self.keywords = keywords
         self.authors = authors

@@ -33,15 +33,15 @@ def main():
             if opt[keys]["keywords"] is not None else opt["common"]["authors"]
         # print("# {}".format(keys))
         feed = feedparser.parse(opt[keys]["link"])
-        last_update = time.strftime('%Y-%m-%d',feed.updated_parsed)
+        last_update = time.strftime('%Y-%m-%d', feed.updated_parsed)
         if feed.date == flag[keys]:
             print("无（上次更新{}）".format(last_update))
             return 0
-            #continue # 最近用过了
+            # continue # 最近用过了
         else:
-            flag[keys]=feed.date
+            flag[keys] = feed.date
         fd = ArxivFeed(feed=feed,
-                       category = keys,
+                       category=keys,
                        keywords=keywords,
                        authors=authors
                        )
@@ -56,7 +56,7 @@ def main():
     with open(save_path, 'w') as f:
         f.write(interest+all_paper)
     with open("./history/flag.yaml", "w") as f:
-        yaml.dump(flag,f)
+        yaml.dump(flag, f)
     # 用vscode预览
     print(num_interest)
     os.system("code {}".format(save_path))
