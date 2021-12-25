@@ -1,0 +1,55 @@
+#关键和作者列表，按照下面的方式组织
+#----------------------------
+#cs.LG:
+#  link:  RSS或feed订阅链接
+#  authors: 关注的作者列表
+#  keywords: 关注的关键词列表
+#----------------------------
+# 关于yaml文件：https://www.google.com/
+
+common: 
+# 通用的关键词列表，检索时，此部分关键词会与每个分类的关键词取并的关系
+  authors:
+    - Peyman Milanfar
+    - Jinwei Gu
+    - Michael S. Brown
+    - Chongyi Li
+    - Kede Ma
+    - Lei Zhang
+    - Rafal Mantiuk
+    - Mahmoud Afifi
+  keywords: # keywords in title and abstract
+    - low-light
+    - low light
+    - Low light
+    - night
+    - enhancement
+    - HDR
+    - High Dynamic Range
+    - high dynamic range
+    - High dynamic range
+    - color constancy
+    - restoration
+    - Restoration
+
+cs.CV:
+  link: https://arxiv.org/rss/cs.CV/new
+  authors:
+  keywords: 
+
+eess.IV:
+  link: https://arxiv.org/rss/eess.IV/new
+  authors:
+  keywords:
+
+cs.LG:
+  link: https://arxiv.org/rss/cs.LG/new
+  authors: 
+  keywords:
+
+cs.AI:
+  link: https://arxiv.org/rss/cs.AI/new
+  authors: 
+  keywords:
+
+
