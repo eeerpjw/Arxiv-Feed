@@ -13,7 +13,6 @@ import feedparser
 from glob import glob
 from Feed import ArxivFeed
 
-
 def main():
     with open("./configs/list.yaml", "r") as f:
         opt = yaml.load(f, Loader=yaml.FullLoader)
