@@ -20,19 +20,34 @@ common:
     - Mahmoud Afifi
     - Nima Khademi Kalantari
     - Ram Prabhakar
+    - Jiaying Liu
+    - Wenhan Yang
   keywords: # keywords in title and abstract
+    - bilateral
+    - Bilateral
+    - camera pipeline
+    - Camera Pipeline
+    - color constancy
+    - Color Constancy
+    - Enhancement
+    - Enhancement
+    - exposure
+    - Exposure
+    - high dynamic range
+    - High dynamic range
+    - High Dynamic Range
+    - HDR
     - low-light
     - low light
     - Low light
     - night
-    - enhancement
-    - HDR
-    - High Dynamic Range
-    - high dynamic range
-    - High dynamic range
-    - color constancy
+    - Night
+    - Real-Time
+    - real time
     - restoration
     - Restoration
+
+
 
 cs.CV:
   link: https://arxiv.org/rss/cs.CV/new
