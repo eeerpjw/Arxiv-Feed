@@ -46,14 +46,14 @@ class ArxivFeed(object):
                              }
                 # 关键词加粗
                 if in_author:
+                    sel_entry['title'] = make_bold(
+                        self.keywords, sel_entry['title'])
+                elif in_title:
                     sel_entry['author'] = make_bold(
                         self.authors, sel_entry['author'])
                 elif in_summary:
                     sel_entry['abstract'] = make_bold(
                         self.keywords, sel_entry['abstract'])
-                elif in_title:
-                    sel_entry['title'] = make_bold(
-                        self.keywords, sel_entry['title'])
                 self.selected.append(sel_entry)
             self.titles.append(entry["title"])
 
