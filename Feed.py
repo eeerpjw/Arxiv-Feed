@@ -13,7 +13,6 @@ import re
 def make_bold(keywords, text):
     for kw in keywords:
         if kw in text:
-            print(kw)
             text = text.replace(kw, '**'+kw+'**')
     return text
 
@@ -46,6 +45,8 @@ class ArxivFeed(object):
                              "abstract": entry["summary"].replace("<p>", " ").replace("</p>", " ")
                              }
                 # 关键词加粗
+                '''
+                # 放在格式化输出部分加粗更合理，同时降低复杂度
                 if in_title:
                     sel_entry['title'] = make_bold(
                         self.keywords, sel_entry['title'])
@@ -56,7 +57,9 @@ class ArxivFeed(object):
                     sel_entry['abstract'] = make_bold(
                         self.keywords, sel_entry['abstract'])
                 self.selected.append(sel_entry)
+                '''
             self.titles.append(entry["title"])
+                
 
     def convert2text_selected(self):
         s = '---\n'
@@ -66,6 +69,9 @@ class ArxivFeed(object):
             s += '{} : [{}]({})\n'.format("- Link",
                                           entry["link"], entry["link"])
             s += '{} : {}\n'.format("> ABSTRACT ", entry["abstract"])
+            # 加粗
+            s = make_bold(self.keywords, s)
+            s = make_bold(self.authors, s)
         return s
 
     def convert2text_paperlist(self):
@@ -74,6 +80,9 @@ class ArxivFeed(object):
         s += "**{}** new papers in {}:-) \n".format(len(self.titles), self.tag)
         for i, p in enumerate(self.titles):
             s += "{}. {}\n".format(i+1, p)
+        # 加粗
+        s = make_bold(self.keywords, s)
+        s = make_bold(self.authors, s)
         return s
 
     def print_selected(self):
