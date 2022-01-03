@@ -29,7 +29,7 @@ common:
     - Camera Pipeline
     - color constancy
     - Color Constancy
-    - Enhancement
+    - enhancement
     - Enhancement
     - exposure
     - Exposure

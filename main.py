@@ -34,7 +34,7 @@ def main():
         # feed = feedparser.parse(opt[keys]["link"],modified=flag[keys],etag=flag[keys]["etag"])
         feed = feedparser.parse(opt[keys]["link"])
         last_update = time.strftime('%Y-%m-%d', feed.updated_parsed)
-        if feed.updated_parsed == flag[keys]:
+        if last_update == flag[keys]:
         # if feed.status == 304:
             print("无（上次更新{}）".format(last_update))
             return 0

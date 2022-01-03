@@ -13,6 +13,7 @@ import re
 def make_bold(keywords, text):
     for kw in keywords:
         if kw in text:
+            print(kw)
             text = text.replace(kw, '**'+kw+'**')
     return text
 
@@ -45,13 +46,13 @@ class ArxivFeed(object):
                              "abstract": entry["summary"].replace("<p>", " ").replace("</p>", " ")
                              }
                 # 关键词加粗
-                if in_author:
+                if in_title:
                     sel_entry['title'] = make_bold(
                         self.keywords, sel_entry['title'])
-                elif in_title:
+                if in_author:
                     sel_entry['author'] = make_bold(
                         self.authors, sel_entry['author'])
-                elif in_summary:
+                if in_summary:
                     sel_entry['abstract'] = make_bold(
                         self.keywords, sel_entry['abstract'])
                 self.selected.append(sel_entry)
