@@ -31,14 +31,16 @@ def main():
         authors = opt[keys]["authors"]+opt["common"]["authors"] \
             if opt[keys]["keywords"] is not None else opt["common"]["authors"]
         # print("# {}".format(keys))
+        # feed = feedparser.parse(opt[keys]["link"],modified=flag[keys],etag=flag[keys]["etag"])
         feed = feedparser.parse(opt[keys]["link"])
         last_update = time.strftime('%Y-%m-%d', feed.updated_parsed)
-        if feed.date == flag[keys]:
+        if feed.updated_parsed == flag[keys]:
+        # if feed.status == 304:
             print("无（上次更新{}）".format(last_update))
             return 0
             # continue # 最近用过了
         else:
-            flag[keys] = feed.date
+            flag[keys] = last_update
         fd = ArxivFeed(feed=feed,
                        category=keys,
                        keywords=keywords,
