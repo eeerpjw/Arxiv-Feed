@@ -56,8 +56,9 @@ class ArxivFeed(object):
                 if in_summary:
                     sel_entry['abstract'] = make_bold(
                         self.keywords, sel_entry['abstract'])
-                self.selected.append(sel_entry)
                 '''
+                self.selected.append(sel_entry)
+
             self.titles.append(entry["title"])
                 
 
@@ -70,8 +71,8 @@ class ArxivFeed(object):
                                           entry["link"], entry["link"])
             s += '{} : {}\n'.format("> ABSTRACT ", entry["abstract"])
             # 加粗
-            s = make_bold(self.keywords, s)
-            s = make_bold(self.authors, s)
+        s = make_bold(self.keywords, s)
+        s = make_bold(self.authors, s)
         return s
 
     def convert2text_paperlist(self):
