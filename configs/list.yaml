@@ -29,6 +29,8 @@ common:
     - Camera Pipeline
     - color constancy
     - Color Constancy
+    - Dark
+    - dark
     - enhancement
     - Enhancement
     - exposure
