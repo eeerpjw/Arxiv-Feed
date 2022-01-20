@@ -13,6 +13,17 @@ import feedparser
 from glob import glob
 from Feed import ArxivFeed
 
+def get_feed_recursively(url):
+    '''
+    get feed content recursively, in case exceptions occur
+    '''
+    feed = feedparser.parse(url)
+    try:
+        feed.updated_parsed
+    except AttributeError:
+        feed = get_feed_recursively(url)
+    return feed
+
 def main():
     with open("./configs/list.yaml", "r") as f:
         opt = yaml.load(f, Loader=yaml.FullLoader)
@@ -32,7 +43,7 @@ def main():
             if opt[keys]["keywords"] is not None else opt["common"]["authors"]
         # print("# {}".format(keys))
         # feed = feedparser.parse(opt[keys]["link"],modified=flag[keys],etag=flag[keys]["etag"])
-        feed = feedparser.parse(opt[keys]["link"])
+        feed = get_feed_recursively(opt[keys]["link"])
         last_update = time.strftime('%Y-%m-%d', feed.updated_parsed)
         if last_update == flag[keys]:
         # if feed.status == 304:
