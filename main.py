@@ -61,7 +61,7 @@ def main():
         all_paper += fd.convert2text_paperlist()
         num_interest += len(fd.selected)
     interest = '# Your interest papers\n---\n'+interest
-    all_paper = '# Paper List\n---\n'+all_paper
+    all_paper = '# Paper List\n---\n'+all_paper+'\n'
     save_path = "./history/arxiv_{}.md".format(last_update)
     # 按照日期保存
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
