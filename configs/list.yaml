@@ -51,6 +51,8 @@ common:
     - restoration
     - Restoration
     - Swin
+    - implicit neural representation
+    - NeRF
 
 
 
