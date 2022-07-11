@@ -39,8 +39,10 @@ common:
     - High dynamic range
     - High Dynamic Range
     - HDR
+    - deghosting
     - low-light
     - Low-light
+    - Low-Light
     - low light
     - Low light
     - Low Light
