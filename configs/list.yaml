@@ -31,6 +31,7 @@ common:
     - Color Constancy
     - Dark
     - dark
+    - deghosting
     - enhancement
     - Enhancement
     - exposure
@@ -38,8 +39,12 @@ common:
     - high dynamic range
     - High dynamic range
     - High Dynamic Range
+    - Tone-Mapping
+    - Tone Mapping
+    - Tone mapping
     - HDR
-    - deghosting
+    - ISP
+    - light weight
     - low-light
     - Low-light
     - Low-Light
@@ -53,8 +58,8 @@ common:
     - restoration
     - Restoration
     - Swin
-    - implicit neural representation
-    - NeRF
+#    - implicit neural representation
+#     - NeRF
 
 
 
