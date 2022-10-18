@@ -11,55 +11,14 @@ common:
 # 通用的关键词列表，检索时，此部分关键词会与每个分类的关键词取并的关系
   authors:
     - Peyman Milanfar
-    - Jinwei Gu
     - Michael S. Brown
-    - Chongyi Li
-    - Kede Ma
-    - Lei Zhang
-    - Rafal Mantiuk
-    - Mahmoud Afifi
-    - Nima Khademi Kalantari
-    - Ram Prabhakar
-    - Jiaying Liu
-    - Wenhan Yang
+
   keywords: # keywords in title and abstract
-    - bilateral
-    - Bilateral
-    - camera pipeline
-    - Camera Pipeline
-    - color constancy
-    - Color Constancy
-    - Dark
-    - dark
-    - deghosting
-    - enhancement
-    - Enhancement
-    - exposure
-    - Exposure
-    - high dynamic range
-    - High dynamic range
     - High Dynamic Range
-    - Tone-Mapping
     - Tone Mapping
-    - Tone mapping
     - HDR
-    - ISP
-    - light weight
-    - low-light
-    - Low-light
     - Low-Light
-    - low light
-    - Low light
-    - Low Light
-    - night
-    - Night
-    - Real-time
-    - real time
-    - restoration
-    - Restoration
-    - Swin
-#    - implicit neural representation
-#     - NeRF
+ 
 
 
 
